@@ -2,10 +2,12 @@ todo
 1. design
 2. documentation
     1. ideas
-    2. incubation 
+    2. incubation
+    3. learning 
 3. competitor survey
 4. survey on management,etc
 5. to learn: notion, eraser,linear
+6. react examples
 
 # how to start
 macos, ios simulater: npx expo start
