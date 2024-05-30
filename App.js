@@ -1,5 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
+// import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
+import GeneralTest from './src/practice/GeneralTest';
+import StatusBarTest from './src/practice/StatusBar';
+import SwitchTest from './src/practice/SwitchTest'
+import TextInNest from './src/practice/TextTest'
+import TextInputExample from './src/practice/TextInputTest'
 import {
   StyleSheet,
   Text,
@@ -10,7 +15,13 @@ import {
   FlatList,
   TouchableOpacity,
   Image,
-  ImageBackground
+  ImageBackground,
+  ScrollView,
+  RefreshControl,
+  SectionList,
+  StatusBar,
+  SafeAreaView,
+  Platform
 } from 'react-native';
 
 const DATA = [
@@ -27,6 +38,24 @@ const DATA = [
     title: 'Third Item',
   },
 ];
+const DATA2 = [
+  {
+    title: 'Main dishes',
+    data: ['Pizza', 'Burger', 'Risotto'],
+  },
+  {
+    title: 'Sides',
+    data: ['French Fries', 'Onion Rings', 'Fried Shrimps'],
+  },
+  {
+    title: 'Drinks',
+    data: ['Water', 'Coke', 'Beer'],
+  },
+  {
+    title: 'Desserts',
+    data: ['Cheese Cake', 'Ice Cream'],
+  },
+];
 
 const image = { uri: 'https://legacy.reactjs.org/logo-og.png' };
 
@@ -35,59 +64,93 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
     <Text style={[styles.title, { color: textColor }]}>{item.title}</Text>
   </TouchableOpacity>
 );
+const STYLES = ['default', 'dark-content', 'light-content'];
+const TRANSITIONS = ['fade', 'slide', 'none'];
 
-export default function App() {
-  const [selectedId, setSelectedId] = useState();
-  const renderItem = ({ item }) => {
-    const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
-    const color = item.id === selectedId ? 'white' : 'black';
 
-    return (
-      <Item
-        item={item}
-        onPress={() => setSelectedId(item.id)}
-        backgroundColor={backgroundColor}
-        textColor={color}
-      />
-    );
-  };
-  return (
-    <View style={styles.container}>
-      <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text>test!</Text>
-      <Button
-        onPress={() => Alert.alert('Simple Button pressed')}
-        title="Learn More"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button"
-      />
-      <ActivityIndicator size="large" color="#00ff00" />
-      <FlatList
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        extraData={selectedId}
-      />
-      <Image
-        style={styles.tinyLogo}
-        source={{
-          uri: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==',
-        }}
-      />
-      <Image
-        style={styles.tinyLogo}
-        source={{
-          uri: 'https://reactnative.dev/img/tiny_logo.png',
-        }}
-      />
-      {/* <StatusBar style="auto" /> */}
-      
-        <Text style={styles.text}>Inside</Text>
-      </ImageBackground>
-    </View>
+const StatusBarTest2 = () => {
+  const [hidden, setHidden] = useState(false);
+  const [statusBarStyle, setStatusBarStyle] = useState(STYLES[0]);
+  const [statusBarTransition, setStatusBarTransition] = useState(
+    TRANSITIONS[0],
   );
+
+  const changeStatusBarVisibility = () => setHidden(!hidden);
+
+  const changeStatusBarStyle = () => {
+    const styleId = STYLES.indexOf(statusBarStyle) + 1;
+    if (styleId === STYLES.length) {
+      setStatusBarStyle(STYLES[0]);
+    } else {
+      setStatusBarStyle(STYLES[styleId]);
+    }
+  };
+
+  const changeStatusBarTransition = () => {
+    const transition = TRANSITIONS.indexOf(statusBarTransition) + 1;
+    if (transition === TRANSITIONS.length) {
+      setStatusBarTransition(TRANSITIONS[0]);
+    } else {
+      setStatusBarTransition(TRANSITIONS[transition]);
+    }
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <StatusBar
+        animated={true}
+        backgroundColor="#61dafb"
+        barStyle={statusBarStyle}
+        showHideTransition={statusBarTransition}
+        hidden={hidden}
+      />
+      <Text style={styles.textStyle}>
+        StatusBar Visibility:{'\n'}
+        {hidden ? 'Hidden' : 'Visible'}
+      </Text>
+      <Text style={styles.textStyle}>
+        StatusBar Style:{'\n'}
+        {statusBarStyle}
+      </Text>
+      {Platform.OS === 'ios' ? (
+        <Text style={styles.textStyle}>
+          StatusBar Transition:{'\n'}
+          {statusBarTransition}
+        </Text>
+      ) : null}
+      <View style={styles.buttonsContainer}>
+        <Button title="Toggle StatusBar" onPress={changeStatusBarVisibility} />
+        <Button title="Change StatusBar Style" onPress={changeStatusBarStyle} />
+        {Platform.OS === 'ios' ? (
+          <Button
+            title="Change StatusBar Transition"
+            onPress={changeStatusBarTransition}
+          />
+        ) : null}
+      </View>
+    </SafeAreaView>
+  );
+};
+
+
+const App = () => {
+  return (
+    <View style={styles.container} >
+      <SwitchTest></SwitchTest>
+      <TextInputExample></TextInputExample>
+      <TextInNest></TextInNest>
+      <GeneralTest></GeneralTest>
+      <StatusBarTest></StatusBarTest>
+      <Text style={styles.text2}> App</Text>
+    </View>
+  )
 }
+
+
+
+
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -112,6 +175,7 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     justifyContent: 'center',
+    opacity: 0.70
   },
   text: {
     color: 'white',
@@ -121,4 +185,20 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     backgroundColor: '#000000c0',
   },
+  text2: {
+    color: 'red',
+    fontSize: 14,
+    lineHeight: 84,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  scrollView: {
+    flex: 1,
+    // backgroundColor: 'pink',
+    // alignItems: 'center',
+    // justifyContent: 'center',
+  },
 });
+
+
+export default App;
