@@ -22,6 +22,7 @@ const StatusBarTest = () => {
   const changeStatusBarVisibility = () => setHidden(!hidden);
 
   const changeStatusBarStyle = () => {
+    // @ts-expect-error TS(2345): Argument of type 'string | undefined' is not assig... Remove this comment to see the full error message
     const styleId = STYLES.indexOf(statusBarStyle) + 1;
     if (styleId === STYLES.length) {
       setStatusBarStyle(STYLES[0]);
@@ -31,6 +32,7 @@ const StatusBarTest = () => {
   };
 
   const changeStatusBarTransition = () => {
+    // @ts-expect-error TS(2345): Argument of type 'string | undefined' is not assig... Remove this comment to see the full error message
     const transition = TRANSITIONS.indexOf(statusBarTransition) + 1;
     if (transition === TRANSITIONS.length) {
       setStatusBarTransition(TRANSITIONS[0]);
@@ -41,6 +43,7 @@ const StatusBarTest = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      // @ts-expect-error TS(2769): No overload matches this call.
       <StatusBar
         animated={true}
         backgroundColor="#61dafb"

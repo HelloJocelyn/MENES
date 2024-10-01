@@ -4,6 +4,7 @@ import * as React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import constants from '../../assets/constants';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen  from '../screens/HomeScreen';
 
@@ -20,7 +21,9 @@ const Stack = createNativeStackNavigator();
 //         </View>
 //     );
 // }
-function SettingScreen({ navigation }) {
+function SettingScreen({
+    navigation
+}: any) {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text>Setting Screen</Text>
@@ -56,6 +59,7 @@ function MyNavigator() {
                     },
 
                 }}>
+                // @ts-expect-error TS(2322): Type '({ navigation }: any) => {}' is not assignab... Remove this comment to see the full error message
                 <Tab.Screen name="Home" component={HomeScreen}
                     options={{
                         headerShown: false,

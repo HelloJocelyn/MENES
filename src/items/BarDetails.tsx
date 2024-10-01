@@ -13,6 +13,7 @@ import {
 const deviceWidth = Dimensions.get('window').width;
 
 class BarDetail extends Component {
+    // @ts-expect-error TS(4114): This member must have an 'override' modifier becau... Remove this comment to see the full error message
     state = {
         languages: ["日本語", "Espanol"],
     };
@@ -32,6 +33,7 @@ class BarDetail extends Component {
     //         });
     // }
 
+    // @ts-expect-error TS(4114): This member must have an 'override' modifier becau... Remove this comment to see the full error message
     render() {
         return (
             <View style={{ alignItems: 'center' }}>
@@ -43,6 +45,7 @@ class BarDetail extends Component {
                     }}>
                     "test" 
                 </Text>
+                // @ts-expect-error TS(2304): Cannot find name 'Button'.
                 <Button onPress={() => goBack()} title="Go back from ProfileScreen" />
                 
             </View>

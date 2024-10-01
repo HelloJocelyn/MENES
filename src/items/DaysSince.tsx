@@ -9,6 +9,7 @@ import {
 
 const deviceWidth = Dimensions.get('window').width;
 class AddItem extends Component {
+    // @ts-expect-error TS(4114): This member must have an 'override' modifier becau... Remove this comment to see the full error message
     render() {
         return (
             <View style={styles.itemAdd} >

@@ -23,12 +23,15 @@ const deviceWidth = Dimensions.get('window').width;
  */
 async function storeItem(userID: string) {
     try {
+      // @ts-expect-error TS(2304): Cannot find name 'USER_ID_KEY'.
       await AsyncStorage.setItem(USER_ID_KEY, userID);
     } catch (err) {
+      // @ts-expect-error TS(2304): Cannot find name 'Sentry'.
       Sentry.captureException(err);
     }
   }
 class ItemBar extends Component {
+    // @ts-expect-error TS(4114): This member must have an 'override' modifier becau... Remove this comment to see the full error message
     state = {
         languages: ["日本語", "Espanol"],
     };
@@ -51,6 +54,7 @@ class ItemBar extends Component {
     //         });
     // }
 
+    // @ts-expect-error TS(4114): This member must have an 'override' modifier becau... Remove this comment to see the full error message
     render() {
         return (
             <View style={{ alignItems: 'center' }}>

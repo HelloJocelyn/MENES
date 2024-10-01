@@ -32,6 +32,7 @@ export default {
      PRIMARY_FONT_LIGHT : "poppins_light",
      PRIMARY_FONT_REGULAR : "poppins_regular",
      PRIMARY_FONT_MEDIUM : "poppins_medium",
+     // @ts-expect-error TS(1117): An object literal cannot have multiple properties ... Remove this comment to see the full error message
      PRIMARY_FONT_REGULAR : "poppins_regular",
      PRIMARY_FONT_BOLD : "poppins_bold",
      PRIMARY_FONT_SEMI_BOLD : "poppins_semibold",
