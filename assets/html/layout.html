@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Document</title>
+    <style>
+        div {
+            width: 300px;
+            height: 200px;
+            /* margin: auto; */
+            background-color: #FFF4A3;
+            padding: 10px;
+    
+            display: inherit;
+            border-width: 2px;
+            border-style: dotted;
+            border-color: red;
+            margin: 10px;
+        }
+        .inline {
+            display:inline;
+        }
+        .short {
+            width: 100px;
+            height: 100px;
+        }
+        .tall {
+            width: 300px;
+            height: 300px;
+        }
+        .grande {
+            width: 500px;
+            height: 500px;
+        }
+        .venti {
+            width: 700px;
+            height: 700px;
+        }
+        .largeMargin {
+            margin: 100px;
+        }
+        .smallMargin {
+            margin: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"> test</div>
+    <div class="inline short" > inline short
+        <div class="short"> short</div>
+        <div class="tall"> tall</div>
+    </div>
+    <div class="inline grande" > inline tall
+        <div class="short"> short</div>
+        <div class="short"> tall</div>
+    </div>
+    <div class="inline"> test</div>
+    <div class="box largeMargin"> test</div>
+    <div class="box smallMargin"> test</div>
+</body>
+
+</html>

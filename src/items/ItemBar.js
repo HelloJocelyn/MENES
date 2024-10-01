@@ -1,21 +1,40 @@
 import React, { Component } from 'react';
 import {
-    ActivityIndicator,
-    ScrollView,
     Text,
     View,
-    Image,
     Dimensions,
-    TouchableOpacity,
+    StyleSheet,
 } from 'react-native';
-// import config from '../../config/config';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 
 const deviceWidth = Dimensions.get('window').width;
 
+/**
+ * name: 
+ *  itemName: string
+ *  createdAt: timestamp
+ *  updatedAt: timestamp
+ *  workingDays: string[]
+ *  continousWorkingDays: number
+ *  
+ * 
+ */
+async function storeItem(userID: string) {
+    try {
+      await AsyncStorage.setItem(USER_ID_KEY, userID);
+    } catch (err) {
+      Sentry.captureException(err);
+    }
+  }
 class ItemBar extends Component {
     state = {
         languages: ["日本語", "Espanol"],
     };
+    daysSince = {
+
+    }
 
     // componentDidMount() {
     //     fetch(
@@ -56,10 +75,10 @@ class ItemBar extends Component {
                                 width: deviceWidth - 30,
                                 marginVertical: 7,
                             }}>
-                            <Image
+                            {/* <Image
                                 source={require('../../assets/icons/weather.png')}
                                 style={{ height: 100, width: 100, borderRadius: 10 }}
-                            />
+                            /> */}
                             <Text
                                 style={{
                                     width: deviceWidth - 130,
@@ -78,4 +97,7 @@ class ItemBar extends Component {
     }
 }
 
+
+
 export default ItemBar;
+

@@ -5,22 +5,21 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import constants from '../../assets/constants';
 import Icon from 'react-native-vector-icons/Ionicons';
+import HomeScreen  from '../screens/HomeScreen';
 
 
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
-function HomeScreen({ navigation }) {
-    return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Home Screen</Text>
-            <Button
-                title="Go to Details"
-                onPress={() => navigation.navigate('Setting')}
-            />
-        </View>
-    );
-}
+// function HomeScreen({ navigation }) {
+//     return (
+//         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+
+//             <ItemBar></ItemBar>
+//             <AddItem></AddItem>
+//         </View>
+//     );
+// }
 function SettingScreen({ navigation }) {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -39,14 +38,23 @@ function MyNavigator() {
                 screenOptions={{
                     tabBarShowLabel: false,
                     tabBarStyle: {
-                        height: 60,
+                        height: 45,
                         elevation: 50,
-                        backgroundColor: constants.LIGHT_THEME_BG,
-                        position: "center",
-                        borderRadius: 15,
-                        left: 10,
-                        right: 10
+                        backgroundColor: "#fff",
+                        position: "absolute",
+                        overflow: 'hidden',
+                        borderTopLeftRadius: 21,
+                        borderTopRightRadius: 21,
+                        shadowOffset: {
+                            width: 0,
+                            height: 12,
+                        },
+                        width: '100%',
+                        shadowOpacity: 0.54,
+                        shadowRadius: 16,
+                        zIndex: 0,
                     },
+
                 }}>
                 <Tab.Screen name="Home" component={HomeScreen}
                     options={{
