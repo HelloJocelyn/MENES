@@ -24,3 +24,5 @@ todo:
 3. where is the native ios code located, and what is the process to compile into native code
 4. how navigation in ios native code implemented
 
+// de.mycompany.myappname
+

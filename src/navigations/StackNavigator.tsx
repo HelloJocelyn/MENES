@@ -12,15 +12,7 @@ import HomeScreen  from '../screens/HomeScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
-// function HomeScreen({ navigation }) {
-//     return (
-//         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 
-//             <ItemBar></ItemBar>
-//             <AddItem></AddItem>
-//         </View>
-//     );
-// }
 function SettingScreen({
     navigation
 }: any) {
@@ -43,7 +35,7 @@ function MyNavigator() {
                     tabBarStyle: {
                         height: 45,
                         elevation: 50,
-                        backgroundColor: "#fff",
+                        backgroundColor: "#ff0",
                         position: "absolute",
                         overflow: 'hidden',
                         borderTopLeftRadius: 21,
@@ -59,7 +51,6 @@ function MyNavigator() {
                     },
 
                 }}>
-                // @ts-expect-error TS(2322): Type '({ navigation }: any) => {}' is not assignab... Remove this comment to see the full error message
                 <Tab.Screen name="Home" component={HomeScreen}
                     options={{
                         headerShown: false,
